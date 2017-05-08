@@ -1,5 +1,6 @@
 language: python
 
 script:
+  - flake8 .
   - cd pyQuantuccia
   - python setup.py test
