@@ -2,6 +2,7 @@ language: python
 
 install:
   - pip install flake8
+  - apt-get install python-dev
 
 before_script:
   - flake8 .
@@ -9,3 +10,4 @@ before_script:
 script:
   - cd pyQuantuccia
   - python setup.py test
+  - python setup.py sdist
