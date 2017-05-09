@@ -1,0 +1,3 @@
+[submodule "pyQuantuccia/pyQuantuccia/src/Quantuccia"]
+	path = pyQuantuccia/pyQuantuccia/src/Quantuccia
+	url = https://github.com/jwg4/Quantuccia.git
