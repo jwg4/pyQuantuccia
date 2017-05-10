@@ -11,3 +11,6 @@ script:
   - cd pyQuantuccia
   - python setup.py test
   - python setup.py sdist
+
+notifications:
+  email: false
