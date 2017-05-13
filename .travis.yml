@@ -4,6 +4,8 @@ install:
   - pip install flake8
   - sudo apt-get update -qq
   - sudo apt-get install -y python-dev
+  - git submodule init
+  - git submodule update
 
 before_script:
   - flake8 .
