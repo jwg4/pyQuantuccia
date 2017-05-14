@@ -3,7 +3,7 @@ language: python
 install:
   - pip install flake8
   - sudo apt-get update -qq
-  - sudo apt-get install -y python-dev
+  - sudo apt-get install -y python-dev libboost-dev
   - git submodule init
   - git submodule update
 
