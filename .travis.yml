@@ -10,10 +10,13 @@ install:
 before_script:
   - flake8 .
 
+env:
+  - TASK=test
+  - TASK=sdist
+
 script:
   - cd pyQuantuccia
-  - python setup.py test
-  - python setup.py sdist
+  - python setup.py $TASK
 
 notifications:
   email: false
