@@ -12,8 +12,16 @@ static PyMethodDef QuantucciaMethods[] = {
 	{NULL,     NULL}        /* Sentinel */
 };
 
+static struct PyModuleDef quantuccia_module_def = {
+	PyModuleDef_HEAD_INIT,
+	"quantuccia",
+	NULL,
+	-1,
+	QuantucciaMethods,
+};
+
 PyObject* PyInit_pyQuantuccia(void){
     PyObject *m;
-    m = PyCreate_Module("quantuccia", QuantucciaMethods);
+    m = PyCreate_Module(&quantuccia_module_def);
     return m;
 }
