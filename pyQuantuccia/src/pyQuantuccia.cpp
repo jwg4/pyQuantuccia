@@ -22,6 +22,6 @@ static struct PyModuleDef quantuccia_module_def = {
 
 PyObject* PyInit_pyQuantuccia(void){
     PyObject *m;
-    m = PyCreate_Module(&quantuccia_module_def);
+    m = PyModule_Create(&quantuccia_module_def);
     return m;
 }
