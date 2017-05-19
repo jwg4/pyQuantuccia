@@ -16,6 +16,8 @@ before_script:
 env:
   - TASK=test
   - TASK=sdist
+  - TASK=build
+  - TASK=bdist_egg
 
 script:
   - cd pyQuantuccia
