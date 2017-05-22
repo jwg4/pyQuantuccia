@@ -9,7 +9,7 @@ get_holiday_date(PyObject *self, PyObject *args)
  
 static PyMethodDef QuantucciaMethods[] = {
 	{"get_holiday_date", (PyCFunction)get_holiday_date, METH_VARARGS, NULL},
-	{NULL,     NULL}        /* Sentinel */
+	{NULL, NULL, 0, NULL}
 };
 
 static struct PyModuleDef quantuccia_module_def = {
@@ -18,9 +18,13 @@ static struct PyModuleDef quantuccia_module_def = {
 	NULL,
 	-1,
 	QuantucciaMethods,
+	NULL,
+	NULL,
+	NULL,
+	NULL
 };
 
-PyObject* PyInit_pyQuantuccia(void){
+PyMODINIT_FUNC PyInit_pyQuantuccia(void){
     PyObject *m;
     m = PyModule_Create(&quantuccia_module_def);
     return m;
