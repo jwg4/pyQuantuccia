@@ -3,7 +3,8 @@ import setuptools
 qu_ext = setuptools.Extension(
     'quantuccia',
     include_dirs=['src/Quantuccia'],
-    sources=['src/pyQuantuccia.cpp']
+    sources=['src/pyQuantuccia.cpp'],
+    headers=[]
 )
 
 setuptools.setup(
