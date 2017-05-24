@@ -4,7 +4,7 @@
 static PyObject*
 get_holiday_date(PyObject *self, PyObject *args)
 {
-    return NULL;
+    return Py_None;
 }
  
 static PyMethodDef QuantucciaMethods[] = {
