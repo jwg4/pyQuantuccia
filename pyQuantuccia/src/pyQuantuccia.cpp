@@ -15,7 +15,7 @@ united_kingdom_is_business_day(PyObject *self, PyObject *args)
 	QuantLib::Month m = new QuantLib::Month(month);
 	QuantLib::Year y = new QuantLib::Year(year);
 	QuantLib::Date date = new QuantLib::Date(d, m, y);
-	QuantLib::Calendar calendar = new QuantLib::UnitedKingdom::UnitedKingdom(QuantLib::UnitedKingdom::Market::Exchange);
+	QuantLib::Calendar calendar = new QuantLib::UnitedKingdom(QuantLib::UnitedKingdom::Market::Exchange);
     return PyBool_FromLong(calendar.isBusinessDay(date));
 }
  
