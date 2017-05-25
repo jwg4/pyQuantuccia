@@ -1,8 +1,8 @@
 import quantuccia
 
 
-def test_get_holiday_date():
+def test_easter_monday():
     """ At the moment the only thing this function
         can do is return NULL.
     """
-    assert(quantuccia.get_holiday_date() is None)
+    assert(quantuccia.easter_monday(2017) == 76)

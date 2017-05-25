@@ -1,14 +1,17 @@
 #include <Python.h>
-#include "Quantuccia/ql/time/calendars/unitedstates.hpp"
+#include "Quantuccia/ql/time/calendar.hpp"
 
 static PyObject*
-get_holiday_date(PyObject *self, PyObject *args)
+easter_monday(PyObject *self, PyObject *args)
 {
-    return Py_None;
+	int year;
+    if (!PyArg_ParseTuple(args, "year", &year))
+        return NULL;
+    return PyLong_FromLong(QuantLib::Calendar::WesternImpl::easterMonday(year));
 }
  
 static PyMethodDef QuantucciaMethods[] = {
-	{"get_holiday_date", (PyCFunction)get_holiday_date, METH_VARARGS, NULL},
+	{"easter_monday", (PyCFunction)easter_monday, METH_VARARGS, NULL},
 	{NULL, NULL, 0, NULL}
 };
 
