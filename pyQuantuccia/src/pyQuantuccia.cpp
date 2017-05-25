@@ -1,17 +1,26 @@
 #include <Python.h>
 #include "Quantuccia/ql/time/calendar.hpp"
+#include "Quantuccia/ql/time/date.hpp"
+#include "Quantuccia/ql/time/calendars/unitedkingdom.hpp"
 
 static PyObject*
-easter_monday(PyObject *self, PyObject *args)
+united_kingdom_is_business_day(PyObject *self, PyObject *args)
 {
 	int year;
-    if (!PyArg_ParseTuple(args, "year", &year))
+	int month;
+	int day;
+    if (!PyArg_ParseTuple(args, "bbb|", &year, &month, &day))
         return NULL;
-    return PyLong_FromLong(QuantLib::Calendar::WesternImpl::easterMonday(year));
+	QuantLib::Day d = QuantLib::Day(day);
+	QuantLib::Month m = QuantLib::Month(month);
+	QuantLib::Year y = QuantLib::Year(year);
+	QuantLib::Date date = QuantLib::Date(d, m, y);
+	QuantLib::Calendar calendar = QuantLib::UnitedKingdom(QuantLib::UnitedKingdom::Market.Exchange);
+    return PyBool_FromLong(calendar.isBusinessDay(date));
 }
  
 static PyMethodDef QuantucciaMethods[] = {
-	{"easter_monday", (PyCFunction)easter_monday, METH_VARARGS, NULL},
+	{"united_kingdom_is_business_day", (PyCFunction)united_kingdom_is_business_day, METH_VARARGS, NULL},
 	{NULL, NULL, 0, NULL}
 };
 

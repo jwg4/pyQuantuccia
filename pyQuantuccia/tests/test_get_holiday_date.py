@@ -1,8 +1,8 @@
-import quantuccia
+import calendar
 
 
-def test_easter_monday():
-    """ Check a single year to make sure we can find 
-        the date of Catholic Easter.
+def test_united_kingdom_is_business_day():
+    """ Check a single day to see that we 
+    can identify holidays.
     """
-    assert(quantuccia.easter_monday(2017) == 76)
+    assert(calendar.united_kingdom_is_business_day(date(2017, 4, 17)) is False)
