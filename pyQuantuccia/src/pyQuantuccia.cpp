@@ -11,10 +11,10 @@ united_kingdom_is_business_day(PyObject *self, PyObject *args)
 	int day;
     if (!PyArg_ParseTuple(args, "bbb|", &year, &month, &day))
         return NULL;
-	QuantLib::Day d = new QuantLib::Day(day);
-	QuantLib::Month m = new QuantLib::Month(month);
-	QuantLib::Year y = new QuantLib::Year(year);
-	QuantLib::Date date = new QuantLib::Date(d, m, y);
+	QuantLib::Day d(day);
+	QuantLib::Month m(month);
+	QuantLib::Year y(year);
+	QuantLib::Date date(d, m, y);
 	QuantLib::Calendar calendar = new QuantLib::UnitedKingdom(QuantLib::UnitedKingdom::Market::Exchange);
     return PyBool_FromLong(calendar.isBusinessDay(date));
 }
