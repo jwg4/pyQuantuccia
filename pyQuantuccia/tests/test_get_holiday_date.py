@@ -2,6 +2,9 @@ from datetime import date
 
 import calendar
 
+print(calendar.__dir__())
+print(calendar.__dict__)
+
 
 def test_united_kingdom_is_business_day():
     """ Check a single day to see that we
