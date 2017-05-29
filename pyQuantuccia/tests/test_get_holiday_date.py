@@ -2,8 +2,13 @@ from datetime import date
 
 import calendar
 
-print(calendar.__dir__())
-print(calendar.__dict__)
+
+def test_foo():
+    assert(calendar.__dir__() == "")
+
+
+def test_dummy():
+    assert(calendar.__dict__ == "")
 
 
 def test_united_kingdom_is_business_day():
