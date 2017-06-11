@@ -16,7 +16,12 @@ united_kingdom_is_business_day(PyObject *self, PyObject *args)
 	QuantLib::Year y(year);
 	QuantLib::Date date(d, m, y);
 	QuantLib::UnitedKingdom calendar(QuantLib::UnitedKingdom::Exchange);
-    return PyBool_FromLong(calendar.isBusinessDay(date));
+	bool result = calendar.isBusinessDay(date);
+	if (result) {
+		return Py_True;
+	} else {
+		return Py_False;
+	}
 }
  
 static PyMethodDef QuantucciaMethods[] = {
