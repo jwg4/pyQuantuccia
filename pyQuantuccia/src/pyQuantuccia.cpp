@@ -12,6 +12,7 @@ united_kingdom_is_business_day(PyObject *self, PyObject *args)
 	if (!PyArg_ParseTuple(args, "bbb|", &year, &month, &day))
         return NULL;
 	QuantLib::Day d(day);
+	return Py_True;
 	QuantLib::Month m = static_cast<QuantLib::Month>(month);
 	QuantLib::Year y(year);
 	return Py_True;
