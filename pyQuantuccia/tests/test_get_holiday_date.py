@@ -3,14 +3,6 @@ from datetime import date
 from pyQuantuccia import calendar
 
 
-def test_foo():
-    assert(calendar.__dir__() == "")
-
-
-def test_dummy():
-    assert(calendar.__dict__ == "")
-
-
 def test_united_kingdom_is_business_day():
     """ Check a single day to see that we
     can identify holidays.
