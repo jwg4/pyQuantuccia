@@ -5,5 +5,4 @@ def united_kingdom_is_business_day(dt):
     y = dt.year
     m = dt.month
     d = dt.day
-    print(y, m, d)
     return c_function(y, m, d)
