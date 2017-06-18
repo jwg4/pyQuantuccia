@@ -9,7 +9,6 @@ united_kingdom_is_business_day(PyObject *self, PyObject *args)
 	int year;
 	int month;
 	int day;
-    return Py_True;
 	if (!PyArg_ParseTuple(args, "bbb|", &year, &month, &day))
         return NULL;
 	QuantLib::Day d(day);
@@ -17,6 +16,7 @@ united_kingdom_is_business_day(PyObject *self, PyObject *args)
 	QuantLib::Year y(year);
 	QuantLib::Date date(d, m, y);
 	QuantLib::UnitedKingdom calendar(QuantLib::UnitedKingdom::Exchange);
+    return Py_True;
 	bool result = calendar.isBusinessDay(date);
 	if (result) {
 		return Py_True;
