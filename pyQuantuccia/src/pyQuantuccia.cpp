@@ -17,7 +17,7 @@ united_kingdom_is_business_day(PyObject *self, PyObject *args)
 	QuantLib::Date date(d, m, y);
 	QuantLib::UnitedKingdom calendar(QuantLib::UnitedKingdom::Exchange);
     return Py_True;
-	bool result = calendar.isBusinessDay(date);
+	bool result = calendar.isBusinessDay(&date);
 	if (result) {
 		return Py_True;
 	} else {
