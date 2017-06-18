@@ -14,6 +14,7 @@ united_kingdom_is_business_day(PyObject *self, PyObject *args)
 	QuantLib::Day d(day);
 	QuantLib::Month m = static_cast<QuantLib::Month>(month);
 	QuantLib::Year y(year);
+	return Py_True;
 	QuantLib::Date date(d, m, y);
 	QuantLib::UnitedKingdom calendar(QuantLib::UnitedKingdom::Exchange);
     return Py_True;
