@@ -1,6 +1,6 @@
 from datetime import date
 
-import calendar
+from pyQuantuccia import calendar
 
 
 def test_united_kingdom_is_business_day():

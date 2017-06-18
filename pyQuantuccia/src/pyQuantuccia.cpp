@@ -6,17 +6,18 @@
 static PyObject*
 united_kingdom_is_business_day(PyObject *self, PyObject *args)
 {
-	int year;
-	int month;
-	int day;
-    if (!PyArg_ParseTuple(args, "bbb|", &year, &month, &day))
+    int year;
+    int month;
+    int day;
+    if (!PyArg_ParseTuple(args, "iii|", &year, &month, &day))
         return NULL;
-	QuantLib::Day d(day);
-	QuantLib::Month m = static_cast<QuantLib::Month>(month);
-	QuantLib::Year y(year);
-	QuantLib::Date date(d, m, y);
-	QuantLib::UnitedKingdom calendar(QuantLib::UnitedKingdom::Exchange);
-    return PyBool_FromLong(calendar.isBusinessDay(date));
+    QuantLib::Day d(day);
+    QuantLib::Month m = static_cast<QuantLib::Month>(month);
+    QuantLib::Year y(year);
+    QuantLib::Date date(d, m, y);
+    QuantLib::UnitedKingdom calendar(QuantLib::UnitedKingdom::Exchange);
+    bool result = calendar.isBusinessDay(date);
+    return PyBool_FromLong(result);
 }
  
 static PyMethodDef QuantucciaMethods[] = {
