@@ -9,17 +9,14 @@ united_kingdom_is_business_day(PyObject *self, PyObject *args)
 	int year;
 	int month;
 	int day;
-	if (!PyArg_ParseTuple(args, "bbb|", &year, &month, &day))
+	if (!PyArg_ParseTuple(args, "iii|", &year, &month, &day))
         return NULL;
 	QuantLib::Day d(day);
-	return Py_True;
 	QuantLib::Month m = static_cast<QuantLib::Month>(month);
 	QuantLib::Year y(year);
-	return Py_True;
 	QuantLib::Date date(d, m, y);
 	QuantLib::UnitedKingdom calendar(QuantLib::UnitedKingdom::Exchange);
-    return Py_True;
-	bool result = calendar.isBusinessDay(date);
+    bool result = calendar.isBusinessDay(date);
 	if (result) {
 		return Py_True;
 	} else {
