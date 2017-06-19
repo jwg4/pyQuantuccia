@@ -21,7 +21,12 @@ united_kingdom_is_business_day(PyObject *self, PyObject *args)
 }
  
 static PyMethodDef QuantucciaMethods[] = {
-	{"united_kingdom_is_business_day", (PyCFunction)united_kingdom_is_business_day, METH_VARARGS, NULL},
+	{
+		"united_kingdom_is_business_day",
+		(PyCFunction)united_kingdom_is_business_day,
+		METH_VARARGS,
+		NULL
+	},
 	{NULL, NULL, 0, NULL}
 };
 
