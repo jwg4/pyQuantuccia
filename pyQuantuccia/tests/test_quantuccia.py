@@ -5,7 +5,7 @@ from pyQuantuccia import quantuccia
 
 def test_function_fails_correctly_on_bad_input():
     """
-    If we send in something which isn't three 
+    If we send in something which isn't three
     appropriate ints, something reasonable should
     happen.
     """
