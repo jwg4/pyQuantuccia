@@ -11,7 +11,7 @@ setuptools.setup(
     name='pyQuantuccia',
     author='Jack Grahl',
     author_email='jack.grahl@gmail.com',
-    version='0.1.0',
+    version='0.2.0',
     packages=['pyQuantuccia'],
     package_dir={'': 'src'},
     setup_requires=['pytest-runner'],
