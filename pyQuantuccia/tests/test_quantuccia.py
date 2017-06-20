@@ -3,6 +3,7 @@ import pytest
 from pyQuantuccia import quantuccia
 
 
+@pytest.skip
 def test_function_fails_correctly_on_bad_input():
     """
     If we send in something which isn't three
