@@ -1,6 +1,6 @@
 import pytest
 
-from pyQuantuccia.quantuccia import united_kingdom_is_business_day
+from pyQuantuccia import quantuccia
 
 
 def test_function_fails_correctly_on_bad_input():
@@ -10,4 +10,4 @@ def test_function_fails_correctly_on_bad_input():
     happen.
     """
     with pytest.raises(Exception):
-        united_kingdom_is_business_day(1, 2, 3, 4)
+        quantuccia.united_kingdom_is_business_day(1, 2, 3, 4)
