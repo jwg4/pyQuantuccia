@@ -15,6 +15,13 @@ qu_ext = setuptools.Extension(
     headers=[]
 )
 
+cal_ext = setuptools.Extension(
+    'target_calendar',
+    include_dirs=['src/Quantuccia'] + extra_dirs,
+    sources=['src/py_calendar.cpp'],
+    headers=[]
+)
+
 setuptools.setup(
     name='pyQuantuccia',
     author='Jack Grahl',
@@ -25,5 +32,5 @@ setuptools.setup(
     setup_requires=['pytest-runner'],
     tests_require=['pytest'],
     test_suite='tests',
-    ext_modules=[qu_ext]
+    ext_modules=[qu_ext, cal_ext]
 )
