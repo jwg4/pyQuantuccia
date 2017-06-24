@@ -28,10 +28,6 @@ TargetCalendar_new(PyTypeObject *type, PyObject *args, PyObject *kwds)
   return (PyObject *)self;
 }
 
-static PyMethodDef TargetCalendar_methods[] = {
-  {NULL}  /* Sentinel */
-};
-
 static PyTypeObject TargetCalendarType = {
   PyObject_HEAD_INIT(NULL)
   0,                         /*ob_size*/
@@ -78,18 +74,26 @@ static PyMethodDef module_methods[] = {
   {NULL}  /* Sentinel */
 };
 
-PyMODINIT_FUNC
-initlibfoo()
-{
-  PyObject* m;
+static struct PyModuleDef quantuccia_module_def = {
+	PyModuleDef_HEAD_INIT,
+	"quantuccia",
+	NULL,
+	-1,
+	TargetCalendar_methods,
+	NULL,
+	NULL,
+	NULL,
+	NULL
+};
 
-  if (PyType_Ready(&TargetCalendarType) < 0)
-    return;
-
-  m = Py_InitModule3("libfoo", module_methods, "Example module that creates an extension type.");
-  if (m == NULL)
-    return;
-
-  Py_INCREF(&TargetCalendarType);
-  PyModule_AddObject(m, "TargetCalendar", (PyObject *)&TargetCalendarType);
+PyMODINIT_FUNC PyInit_quantuccia(void){
+    PyObject *m;
+    
+    if (PyType_Ready(&TargetCalendarType) < 0)
+      return;
+    
+    m = PyModule_Create(&quantuccia_module_def);
+    Py_INCREF(&TargetCalendarType);
+    PyModule_AddObject(m, "TargetCalendar", (PyObject *)&TargetCalendarType);
+    return m;
 }
