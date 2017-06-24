@@ -1,1 +1,1 @@
-__all__ = ['quantuccia', 'calendar']
+__all__ = ['quantuccia', 'calendar', 'target_calendar']

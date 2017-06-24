@@ -76,7 +76,7 @@ static PyMethodDef module_methods[] = {
 
 static struct PyModuleDef quantuccia_module_def = {
 	PyModuleDef_HEAD_INIT,
-	"quantuccia",
+	"target_calendar",
 	NULL,
 	-1,
 	TargetCalendar_methods,
@@ -86,7 +86,7 @@ static struct PyModuleDef quantuccia_module_def = {
 	NULL
 };
 
-PyMODINIT_FUNC PyInit_quantuccia(void){
+PyMODINIT_FUNC PyInit_target_calendar(void){
     PyObject *m;
     
     if (PyType_Ready(&TargetCalendarType) < 0)
