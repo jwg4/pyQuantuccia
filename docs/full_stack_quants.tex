@@ -153,6 +153,54 @@ PyMODINIT_FUNC PyInit_quantuccia(void){
 		\end{lstlisting}
 	\end{frame}
 
+	\section{Putting together the Python package}
 
+	\subsection{calendar.py}
+	\begin{frame}[fragile]
+		\frametitle{calendar.py}
+		\begin{lstlisting}[language=Python]
+from quantuccia import united_kingdom_is_business_day as c_function
+
+
+def united_kingdom_is_business_day(dt):
+    y = dt.year
+    m = dt.month
+    d = dt.day
+    return c_function(y, m, d)
+		\end{lstlisting}
+	\end{frame}
+
+	\subsection{setuptools.Extension}
+	\begin{frame}[fragile]
+		\frametitle{setuptools.Extension}
+		\begin{lstlisting}[language=Python]
+import setuptools
+
+qu_ext = setuptools.Extension(
+    'quantuccia',
+    include_dirs=['src/Quantuccia'] + extra_dirs,   
+    sources=['src/pyQuantuccia.cpp'],
+    headers=[]
+)
+		\end{lstlisting}
+	\end{frame}
+
+	\subsection{setup}
+	\begin{frame}[fragile]
+		\frametitle{setup}
+		\begin{lstlisting}[language=Python]
+setuptools.setup(
+    name='pyQuantuccia',
+    author='Jack Grahl',
+    author_email='jack.grahl@gmail.com',
+    version='0.2.0',
+    packages=['pyQuantuccia'],
+    package_dir={'': 'src'},
+    setup_requires=['pytest-runner'],
+    tests_require=['pytest'],
+    test_suite='tests',
+    ext_modules=[qu_ext]
+)		\end{lstlisting}
+	\end{frame}
 
 \end{document}
