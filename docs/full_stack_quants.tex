@@ -86,9 +86,9 @@ united_kingdom_is_business_day(PyObject *self, PyObject *args)
 	\end{frame}
 
 	\begin{frame}[fragile]
-		\frametitle{PyBool_FromLong}
+		\frametitle{Returning a PyObject}
 		\begin{lstlisting}[language=C++]
-static PyObject*
+   static PyObject*
 united_kingdom_is_business_day(PyObject *self, PyObject *args)
 {
     // ...
@@ -97,7 +97,9 @@ united_kingdom_is_business_day(PyObject *self, PyObject *args)
     bool result = calendar.isBusinessDay(date);
     return PyBool_FromLong(result);
 }
-		\end{lstlisting}
+ 		\end{lstlisting}
 	\end{frame}
+
+
 
 \end{document}
