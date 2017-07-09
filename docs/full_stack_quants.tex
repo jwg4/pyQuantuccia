@@ -57,6 +57,22 @@ setup(
 		\end{lstlisting}
 	\end{frame}
 
+	\subsection{python setup.py}
+	\begin{frame}[fragile]
+		\frametitle{python setup.py}
+		\begin{lstlisting}
+env:
+  - TASK=test
+  - TASK=sdist
+  - TASK=build
+  - TASK=bdist_egg
+
+script:
+  - cd pyQuantuccia
+  - python setup.py $TASK
+		\end{lstlisting}
+	\end{frame}
+
 	\section{PyObjects}
 
 	\subsection{Python.h}
