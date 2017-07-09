@@ -20,7 +20,7 @@
 \lstset{
 	showstringspaces=false,
 	keywordstyle=\color{deepblue},
-	emph={Python.h, PyObject, PyArg_ParseTuple},          % Custom highlighting
+	emph={Python.h, PyObject, PyArg_ParseTuple, PyMODINIT_FUNC, PyModule_Create, PyModuleDef, PyModuleDef_HEAD_INIT, PyMethodDef, PyCFunction, METH_VARARGS},          % Custom highlighting
 	emphstyle=\color{deepred},    % Custom highlighting style
 	stringstyle=\color{deepgreen},
 	breakatwhitespace=false,         % sets if automatic breaks should only happen at whitespace
@@ -32,10 +32,11 @@
 \institute{PrismFP Analytics}
 
 \begin{document}
-	\frame{\titlepage}
+	%\frame{\titlepage}
 
 	\section{Making a package}
 
+	\subsection{setuptools}
 	\begin{frame}[fragile]
 		\frametitle{setuptools}
 		\begin{lstlisting}[language=Python]
@@ -58,6 +59,7 @@ setup(
 
 	\section{PyObjects}
 
+	\subsection{Python.h}
 	\begin{frame}[fragile]
 		\frametitle{Python.h}
 		\begin{lstlisting}[language=C++]
@@ -68,6 +70,7 @@ setup(
 		\end{lstlisting}
 	\end{frame}
 
+	\subsection{PyObject *args}
 	\begin{frame}[fragile]
 		\frametitle{PyObject *args}
 		\begin{lstlisting}[language=C++]
@@ -77,7 +80,7 @@ united_kingdom_is_business_day(PyObject *self, PyObject *args)
     int year;
     int month;
     int day;
-    if (!PyArg_ParseTuple(args, "iii|", &year, &month, &day))
+    if (!PyArg_ParseTuple(args, "iii|", \&year, \&month, \&day))
         return NULL;
     QuantLib::Day d(day);
     QuantLib::Month m = static_cast<QuantLib::Month>(month);
@@ -85,8 +88,9 @@ united_kingdom_is_business_day(PyObject *self, PyObject *args)
 		\end{lstlisting}
 	\end{frame}
 
+	\subsection{PyBool\_FromLong}
 	\begin{frame}[fragile]
-		\frametitle{Returning a PyObject}
+		\frametitle{PyBool\_FromLong}
 		\begin{lstlisting}[language=C++]
    static PyObject*
 united_kingdom_is_business_day(PyObject *self, PyObject *args)
@@ -98,6 +102,55 @@ united_kingdom_is_business_day(PyObject *self, PyObject *args)
     return PyBool_FromLong(result);
 }
  		\end{lstlisting}
+	\end{frame}
+
+
+	\section{Building a Python module}
+
+	\subsection{PyMethodDef}
+	\begin{frame}[fragile]
+		\frametitle{PyMethodDef}
+		\begin{lstlisting}[language=C++]
+static PyMethodDef QuantucciaMethods[] = {
+    {
+        "united_kingdom_is_business_day",
+        (PyCFunction)united_kingdom_is_business_day,
+        METH_VARARGS,
+        NULL
+    },
+    {NULL, NULL, 0, NULL}
+};
+		\end{lstlisting}
+	\end{frame}
+
+	\subsection{PyModuleDef}
+	\begin{frame}[fragile]
+		\frametitle{PyModuleDef}
+		\begin{lstlisting}[language=C++]
+static struct PyModuleDef quantuccia_module_def = {
+    PyModuleDef_HEAD_INIT,
+    "quantuccia",
+    NULL,
+    -1,
+    QuantucciaMethods,
+    NULL,
+    NULL,
+    NULL,
+    NULL
+};
+		\end{lstlisting}
+	\end{frame}
+
+	\subsection{PyMODINIT\_FUNC}
+	\begin{frame}[fragile]
+		\frametitle{PyMODINIT\_FUNC}
+		\begin{lstlisting}[language=C++]
+PyMODINIT_FUNC PyInit_quantuccia(void){
+    PyObject *m;
+    m = PyModule_Create(\&quantuccia_module_def);
+    return m;
+}
+		\end{lstlisting}
 	\end{frame}
 
 
