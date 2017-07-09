@@ -1,4 +1,9 @@
 \documentclass{beamer}
+\usepackage{color}
+\definecolor{deepblue}{rgb}{0,0,0.5}
+\definecolor{deepred}{rgb}{0.6,0,0}
+\definecolor{deepgreen}{rgb}{0,0.5,0}
+
 \usepackage{listings}
 
 \AtBeginSection[]
@@ -13,7 +18,13 @@
 \usecolortheme{seahorse}
 
 \lstset{
-	showstringspaces=false
+	showstringspaces=false,
+	keywordstyle=\color{deepblue},
+	emph={Python.h, PyObject, PyArg_ParseTuple},          % Custom highlighting
+	emphstyle=\color{deepred},    % Custom highlighting style
+	stringstyle=\color{deepgreen},
+	breakatwhitespace=false,         % sets if automatic breaks should only happen at whitespace
+  	breaklines=true                 % sets automatic line breaking
 }
 
 \title{You can call your C++ code from Python}
@@ -25,7 +36,7 @@
 	\section[Section]{Making a package}
 	\begin{frame}[fragile]
 		\frametitle{setuptools}
-			\begin{lstlisting}[language=Python]
+		\begin{lstlisting}[language=Python]
 from setuptools import setup
 
 setup(
@@ -42,4 +53,48 @@ setup(
 )
 		\end{lstlisting}
 	\end{frame}
+
+	\section[Section]{PyObjects}
+	\begin{frame}[fragile]
+		\frametitle{Python.h}
+		\begin{lstlisting}[language=C++]
+#include <Python.h>
+#include "Quantuccia/ql/time/calendar.hpp"
+#include "Quantuccia/ql/time/date.hpp"
+#include "Quantuccia/ql/time/calendars/unitedkingdom.hpp"
+		\end{lstlisting}
+	\end{frame}
+
+	\begin{frame}[fragile]
+		\frametitle{PyObject *args}
+		\begin{lstlisting}[language=C++]
+   static PyObject*
+united_kingdom_is_business_day(PyObject *self, PyObject *args)
+{
+    int year;
+    int month;
+    int day;
+    if (!PyArg_ParseTuple(args, "iii|", &year, &month, &day))
+        return NULL;
+    QuantLib::Day d(day);
+    QuantLib::Month m = static_cast<QuantLib::Month>(month);
+    QuantLib::Year y(year);
+		\end{lstlisting}
+	\end{frame}
+
+	\begin{frame}[fragile]
+		\frametitle{PyBool_FromLong}
+		\begin{lstlisting}[language=C++]
+static PyObject*
+united_kingdom_is_business_day(PyObject *self, PyObject *args)
+{
+    // ...
+    QuantLib::Date date(d, m, y);
+    QuantLib::UnitedKingdom calendar(QuantLib::UnitedKingdom::Exchange);
+    bool result = calendar.isBusinessDay(date);
+    return PyBool_FromLong(result);
+}
+		\end{lstlisting}
+	\end{frame}
+
 \end{document}
