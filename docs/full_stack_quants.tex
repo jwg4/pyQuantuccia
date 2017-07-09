@@ -1,0 +1,45 @@
+\documentclass{beamer}
+\usepackage{listings}
+
+\AtBeginSection[]
+{
+  \begin{frame}
+    \frametitle{Table of Contents}
+    \tableofcontents[currentsection]
+  \end{frame}
+}
+
+\usetheme{PaloAlto}
+\usecolortheme{seahorse}
+
+\lstset{
+	showstringspaces=false
+}
+
+\title{You can call your C++ code from Python}
+\author{Jack Grahl}
+\institute{PrismFP Analytics}
+
+\begin{document}
+	\frame{\titlepage}
+	\section[Section]{Making a package}
+	\begin{frame}[fragile]
+		\frametitle{setuptools}
+			\begin{lstlisting}[language=Python]
+from setuptools import setup
+
+setup(
+    name='calexicon',
+    version='0.1.2',
+    description='Calendar stuff',
+    url='http://github.com/jwg4/calexicon',
+    author='Jack Grahl',
+    author_email='jack.grahl@gmail.com',
+    license='Apache License 2.0',
+    packages=['calexicon'],
+    test_suite='nose.collector',
+    tests_require=['nose', 'hypothesis']
+)
+		\end{lstlisting}
+	\end{frame}
+\end{document}
