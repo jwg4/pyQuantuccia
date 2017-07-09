@@ -10,7 +10,7 @@ else:
 
 qu_ext = setuptools.Extension(
     'quantuccia',
-    include_dirs=['src/Quantuccia'] + extra_dirs,
+    include_dirs=['src/Quantuccia'] + extra_dirs,   
     sources=['src/pyQuantuccia.cpp'],
     headers=[]
 )
