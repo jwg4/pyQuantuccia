@@ -27,3 +27,5 @@ script:
 notifications:
   email: false
   slack: fluffy-memory:IhXKLwbxMnqgai34ZDYsT1Yp
+  on_success: never
+  on_failure: always
